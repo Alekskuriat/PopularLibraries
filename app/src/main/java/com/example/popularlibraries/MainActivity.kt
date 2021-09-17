@@ -3,58 +3,43 @@ package com.example.popularlibraries
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
+import com.example.popularlibraries.MVP.MainView
+import com.example.popularlibraries.MVP.Presenter
 import com.example.popularlibraries.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
-        private var vb: ActivityMainBinding? = null
+    private var vb: ActivityMainBinding? = null
 
-        val counters = mutableListOf(0, 0, 0)
+    val presenter = Presenter(this)
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            vb = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(vb?.root)
-            vb?.btnCounter1?.setOnClickListener {
-                vb?.btnCounter1?.text = (++counters[0]).toString()
-            }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        vb = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(vb?.root)
 
-            vb?.btnCounter2?.setOnClickListener {
-                vb?.btnCounter2?.text = (++counters[1]).toString()
-            }
-
-            vb?.btnCounter3?.setOnClickListener {
-                vb?.btnCounter3?.text = (++counters[2]).toString()
-            }
-
-            initViews()
+        val listener = View.OnClickListener {
+            presenter.counterClick(it.id)
         }
 
-        fun initViews() {
-            vb?.btnCounter1?.text = counters[0].toString()
-            vb?.btnCounter2?.text = counters[1].toString()
-            vb?.btnCounter3?.text = counters[2].toString()
-        }
+        vb?.btnCounter1?.setOnClickListener(listener)
+        vb?.btnCounter2?.setOnClickListener(listener)
+        vb?.btnCounter3?.setOnClickListener(listener)
+    }
 
-        override fun onSaveInstanceState(outState: Bundle) {
-            super.onSaveInstanceState(outState)
-            outState.putIntArray("counters", counters.toIntArray())
-        }
 
-        override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-            super.onSaveInstanceState(outState, outPersistentState)
-            outState.putIntArray("counters", counters.toIntArray())
-        }
 
-        override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-            super.onRestoreInstanceState(savedInstanceState)
-            val countersArray = savedInstanceState.getIntArray("counters")
-            countersArray?.toList()?.let {
-                counters.clear()
-                counters.addAll(it)
-            }
-            initViews()
+
+    override fun setButtonText(index: Int, text: String) {
+        when(index){
+            0 -> vb?.btnCounter1?.text = text
+            1 -> vb?.btnCounter2?.text = text
+            2 -> vb?.btnCounter3?.text = text
         }
     }
+
+
+}
 
 
