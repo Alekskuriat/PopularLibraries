@@ -1,23 +1,21 @@
 package com.example.popularlibraries.MVP
 
-class Presenter(
-    val view : MainView
-) {
-    val model = Model()
+class Presenter (
+    private val view : MainView
+) : PresenterInterface {
 
-    fun oneCounterClick() {
-        val nextValue = model.next(0)
-        view.setOneButtonText(nextValue.toString())
+    private val model = Model()
+
+    override fun oneCounterClick() {
+        view.setOneButtonText(model.next(0).toString())
     }
 
-    fun twoCounterClick() {
-        val nextValue = model.next(1)
-        view.setTwoButtonText(nextValue.toString())
+    override fun twoCounterClick() {
+        view.setTwoButtonText(model.next(1).toString())
     }
 
-    fun threeCounterClick() {
-        val nextValue = model.next(2)
-        view.setThreeButtonText(nextValue.toString())
+    override fun threeCounterClick() {
+        view.setThreeButtonText(model.next(2).toString())
     }
 
 

@@ -2,44 +2,48 @@ package com.example.popularlibraries
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import com.example.popularlibraries.MVP.MainView
 import com.example.popularlibraries.MVP.Presenter
+import com.example.popularlibraries.MVP.PresenterInterface
 import com.example.popularlibraries.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(R.layout.activity_main), MainView {
 
-    private var vb: ActivityMainBinding? = null
+    private var B: ActivityMainBinding? = null
 
-    val presenter = Presenter(this)
+    private val presenter: PresenterInterface = Presenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vb = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(vb?.root)
 
-        vb?.btnCounter1?.setOnClickListener {
-            presenter.oneCounterClick()
+        B = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(B?.root)
+
+        B?.apply {
+            btnCounter1.setOnClickListener {
+                presenter.oneCounterClick()
+            }
+            btnCounter2.setOnClickListener {
+                presenter.twoCounterClick()
+            }
+            btnCounter3.setOnClickListener {
+                presenter.threeCounterClick()
+            }
         }
-        vb?.btnCounter2?.setOnClickListener {
-            presenter.twoCounterClick()
-        }
-        vb?.btnCounter3?.setOnClickListener {
-            presenter.threeCounterClick()
-        }
+
     }
 
 
     override fun setOneButtonText(text: String) {
-        vb?.btnCounter1?.text = text
+        B?.btnCounter1?.text = text
     }
 
     override fun setTwoButtonText(text: String) {
-        vb?.btnCounter2?.text = text
+        B?.btnCounter2?.text = text
     }
 
     override fun setThreeButtonText(text: String) {
-        vb?.btnCounter3?.text = text
+        B?.btnCounter3?.text = text
     }
 
 
