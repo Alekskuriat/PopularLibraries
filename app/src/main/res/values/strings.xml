@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Popular libraries</string>
+    <string name="counter_one">Первый счетчик</string>
+    <string name="counter_two">Второй счеткик</string>
+    <string name="counter_three">Третий счетчик</string>
+    <string name="_0">0</string>
 </resources>
