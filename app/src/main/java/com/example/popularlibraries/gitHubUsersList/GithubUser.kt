@@ -1,4 +1,4 @@
-package com.example.popularlibraries
+package com.example.popularlibraries.gitHubUsersList
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

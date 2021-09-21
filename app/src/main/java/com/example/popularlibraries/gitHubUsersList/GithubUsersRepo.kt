@@ -1,4 +1,4 @@
-package com.example.popularlibraries
+package com.example.popularlibraries.gitHubUsersList
 
 class GithubUsersRepo {
 
@@ -9,7 +9,8 @@ class GithubUsersRepo {
             GithubUser("login_2"),
             GithubUser("login_3"),
             GithubUser("login_4"),
-            GithubUser("login_5"))
+            GithubUser("login_5")
+        )
     }
 
 }

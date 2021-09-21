@@ -1,8 +1,10 @@
-package com.example.popularlibraries
+package com.example.popularlibraries.gitHubUsersList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.popularlibraries.IUserListPresenter
+import com.example.popularlibraries.UserItemView
 import com.example.popularlibraries.databinding.ItemBinding
 
 class UsersRVAdapter(
