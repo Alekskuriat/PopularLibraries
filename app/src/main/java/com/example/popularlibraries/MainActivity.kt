@@ -1,18 +1,18 @@
 package com.example.popularlibraries
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.popularlibraries.MVP.MainView
-import com.example.popularlibraries.MVP.Model
-import com.example.popularlibraries.MVP.Presenter
-import com.example.popularlibraries.MVP.PresenterInterface
 import com.example.popularlibraries.databinding.ActivityMainBinding
+import com.example.popularlibraries.packageMvp.MainView
+import com.example.popularlibraries.packageMvp.Model
+import com.example.popularlibraries.packageMvp.Presenter
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity(R.layout.activity_main), MainView {
+class MainActivity : MvpAppCompatActivity(R.layout.activity_main), MainView {
 
     private var binding: ActivityMainBinding? = null
 
-    private val presenter: PresenterInterface = Presenter(this, Model())
+    private val presenter by moxyPresenter { Presenter(Model()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

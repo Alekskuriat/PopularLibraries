@@ -1,4 +1,4 @@
-package com.example.popularlibraries.MVP
+package com.example.popularlibraries.packageMvp
 
 class Model {
 
