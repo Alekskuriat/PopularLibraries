@@ -3,6 +3,7 @@ package com.example.popularlibraries
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
+import moxy.viewstate.strategy.alias.SingleState
 
 interface ItemView {
     var pos : Int
@@ -24,10 +25,15 @@ interface IUserListPresenter : IListPresenter<UserItemView>
 interface MainView : MvpView {
 }
 
-@StateStrategyType(AddToEndSingleStrategy::class)
-interface UserView : MvpView {
+@SingleState
+interface UsersView : MvpView {
     fun init()
     fun updateList()
+}
+
+@SingleState
+interface UserView : MvpView {
+    fun showNameUser(nameUser : String)
 }
 
 interface BackButtonListener {

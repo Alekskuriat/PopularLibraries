@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.BackButtonListener
-import com.example.popularlibraries.UserView
+import com.example.popularlibraries.UsersView
 import com.example.popularlibraries.databinding.FragmentUsersBinding
 import com.example.popularlibraries.gitHubUsersList.model.GithubUsersRepo
 import com.example.popularlibraries.gitHubUsersList.presenter.App
@@ -13,7 +13,7 @@ import com.example.popularlibraries.gitHubUsersList.presenter.UsersPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UsersFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
+class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     companion object {
         fun newInstance() = UsersFragment()
     }
@@ -26,7 +26,7 @@ class UsersFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
     }
     var adapter: UsersRVAdapter? = null
 
-    private var vb: FragmentUsersBinding? = null
+    private var viewBinding: FragmentUsersBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,18 +34,18 @@ class UsersFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
         savedInstanceState: Bundle?
     ) =
         FragmentUsersBinding.inflate(inflater, container, false).also {
-            vb = it
+            viewBinding = it
         }.root
 
     override fun onDestroyView() {
         super.onDestroyView()
-        vb = null
+        viewBinding = null
     }
 
     override fun init() {
-        vb?.rvUsers?.layoutManager = LinearLayoutManager(context)
+        viewBinding?.rvUsers?.layoutManager = LinearLayoutManager(context)
         adapter = UsersRVAdapter(presenter.usersListPresenter)
-        vb?.rvUsers?.adapter = adapter
+        viewBinding?.rvUsers?.adapter = adapter
     }
 
     override fun updateList() {
