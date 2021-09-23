@@ -22,11 +22,14 @@ interface IUserListPresenter : IListPresenter<UserItemView>
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface MainView : MvpView {
+}
+
+@StateStrategyType(AddToEndSingleStrategy::class)
+interface UserView : MvpView {
     fun init()
     fun updateList()
 }
 
-interface UserView : MvpView {
-    fun init()
-    fun updateList()
+interface BackButtonListener {
+    fun backPressed(): Boolean
 }

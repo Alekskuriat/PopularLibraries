@@ -1,8 +1,12 @@
-package com.example.popularlibraries.gitHubUsersList
+package com.example.popularlibraries.gitHubUsersList.presenter
 
+import android.app.AlertDialog
+import android.widget.Toast
 import com.example.popularlibraries.IUserListPresenter
 import com.example.popularlibraries.UserItemView
 import com.example.popularlibraries.UserView
+import com.example.popularlibraries.gitHubUsersList.GithubUser
+import com.example.popularlibraries.gitHubUsersList.GithubUsersRepo
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
@@ -28,9 +32,9 @@ class UsersPresenter(val usersRepo: GithubUsersRepo, val router: Router) :
         viewState.init()
         loadData()
 
-        usersListPresenter.itemClickListener = { itemView ->
-            //TODO: переход на экран пользователя c помощью router.navigateTo
-        }
+       /*usersListPresenter.itemClickListener = { itemView ->
+           router.navigateTo()
+        }*/
     }
 
     fun loadData() {

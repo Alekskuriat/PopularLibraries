@@ -4,42 +4,44 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.databinding.ActivityMainBinding
 import com.example.popularlibraries.databinding.ActivityMainHw2Binding
+import com.example.popularlibraries.gitHubUsersList.App
 import com.example.popularlibraries.gitHubUsersList.GithubUsersRepo
-import com.example.popularlibraries.gitHubUsersList.MainPresenter
+import com.example.popularlibraries.gitHubUsersList.presenter.MainPresenter
 import com.example.popularlibraries.gitHubUsersList.UsersRVAdapter
-import com.example.popularlibraries.packageMvp.MainView
-import com.example.popularlibraries.packageMvp.Model
-import com.example.popularlibraries.packageMvp.Presenter
+import com.example.popularlibraries.gitHubUsersList.presenter.AndroidScreens
+import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
 class MainActivity : MvpAppCompatActivity(R.layout.activity_main_hw_2), com.example.popularlibraries.MainView {
 
-    private var binding: ActivityMainHw2Binding? = null
+    val navigator = AppNavigator(this, R.id.container)
 
-    private val presenter by moxyPresenter { MainPresenter(GithubUsersRepo()) }
-    private var adapter: UsersRVAdapter? = null
-
+    private val presenter by moxyPresenter { MainPresenter(App.instance.router, AndroidScreens()) }
+    private var vb: ActivityMainHw2Binding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainHw2Binding.inflate(layoutInflater)
-        setContentView(binding?.root)
-
+        vb = ActivityMainHw2Binding.inflate(layoutInflater)
+        setContentView(vb?.root)
     }
 
-    override fun init() {
-        binding?.rvUsers?.layoutManager = LinearLayoutManager(this)
-        adapter = UsersRVAdapter(presenter.usersListPresenter)
-        binding?.rvUsers?.adapter = adapter
-
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        App.instance.navigatorHolder.setNavigator(navigator)
     }
 
-    override fun updateList() {
-        adapter?.notifyDataSetChanged()
+    override fun onPause() {
+        super.onPause()
+        App.instance.navigatorHolder.removeNavigator()
     }
 
+    override fun onBackPressed() {
+        supportFragmentManager.fragments.forEach {
+            if(it is BackButtonListener && it.backPressed()){
+                return
+            }
+        }
+        presenter.backClicked()
+    }
 }
-
-
