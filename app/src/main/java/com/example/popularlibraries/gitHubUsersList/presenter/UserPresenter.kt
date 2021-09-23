@@ -17,7 +17,7 @@ class UserPresenter(
     }
 
     fun backPressed(): Boolean {
-        App.instance.router.navigateTo(AndroidScreens().users())
+        App.instance.router.newRootChain(AndroidScreens().users())
         return true
     }
 
