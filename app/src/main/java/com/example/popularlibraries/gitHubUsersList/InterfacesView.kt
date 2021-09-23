@@ -25,3 +25,8 @@ interface MainView : MvpView {
     fun init()
     fun updateList()
 }
+
+interface UserView : MvpView {
+    fun init()
+    fun updateList()
+}
