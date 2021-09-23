@@ -1,12 +1,10 @@
 package com.example.popularlibraries.gitHubUsersList.presenter
 
-import android.app.AlertDialog
-import android.widget.Toast
 import com.example.popularlibraries.IUserListPresenter
 import com.example.popularlibraries.UserItemView
 import com.example.popularlibraries.UserView
-import com.example.popularlibraries.gitHubUsersList.GithubUser
-import com.example.popularlibraries.gitHubUsersList.GithubUsersRepo
+import com.example.popularlibraries.gitHubUsersList.model.GithubUser
+import com.example.popularlibraries.gitHubUsersList.model.GithubUsersRepo
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
@@ -31,9 +29,9 @@ class UsersPresenter(val usersRepo: GithubUsersRepo, val router: Router) :
         super.onFirstViewAttach()
         viewState.init()
         loadData()
-
-       /*usersListPresenter.itemClickListener = { itemView ->
-           router.navigateTo()
+/*
+       usersListPresenter.itemClickListener = { itemView ->
+           router.new
         }*/
     }
 

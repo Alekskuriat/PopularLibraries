@@ -1,13 +1,9 @@
 package com.example.popularlibraries
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.popularlibraries.databinding.ActivityMainBinding
 import com.example.popularlibraries.databinding.ActivityMainHw2Binding
-import com.example.popularlibraries.gitHubUsersList.App
-import com.example.popularlibraries.gitHubUsersList.GithubUsersRepo
+import com.example.popularlibraries.gitHubUsersList.presenter.App
 import com.example.popularlibraries.gitHubUsersList.presenter.MainPresenter
-import com.example.popularlibraries.gitHubUsersList.UsersRVAdapter
 import com.example.popularlibraries.gitHubUsersList.presenter.AndroidScreens
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity

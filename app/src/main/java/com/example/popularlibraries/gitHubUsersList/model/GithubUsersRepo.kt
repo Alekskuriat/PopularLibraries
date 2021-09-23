@@ -1,4 +1,4 @@
-package com.example.popularlibraries.gitHubUsersList
+package com.example.popularlibraries.gitHubUsersList.model
 
 class GithubUsersRepo {
 

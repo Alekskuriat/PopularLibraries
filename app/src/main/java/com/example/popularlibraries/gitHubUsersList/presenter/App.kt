@@ -1,4 +1,4 @@
-package com.example.popularlibraries.gitHubUsersList
+package com.example.popularlibraries.gitHubUsersList.presenter
 
 import android.app.Application
 import com.github.terrakok.cicerone.Cicerone
@@ -14,12 +14,7 @@ class App : Application() {
     private val cicerone: Cicerone<Router> by lazy {
         Cicerone.create()
     }
-    val navigatorHolder = cicerone.getNavigatorHolder()
-    val router = cicerone.router
-
-    /*override fun onCreate() {
-        super.onCreate()
-        instance = this
-    }*/
+    val navigatorHolder get() = cicerone.getNavigatorHolder()
+    val router get() = cicerone.router
 
 }

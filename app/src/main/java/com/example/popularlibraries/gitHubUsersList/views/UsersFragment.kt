@@ -1,4 +1,4 @@
-package com.example.popularlibraries.gitHubUsersList
+package com.example.popularlibraries.gitHubUsersList.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.BackButtonListener
 import com.example.popularlibraries.UserView
 import com.example.popularlibraries.databinding.FragmentUsersBinding
+import com.example.popularlibraries.gitHubUsersList.model.GithubUsersRepo
+import com.example.popularlibraries.gitHubUsersList.presenter.App
 import com.example.popularlibraries.gitHubUsersList.presenter.UsersPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter

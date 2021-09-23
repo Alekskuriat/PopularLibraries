@@ -1,4 +1,4 @@
-package com.example.popularlibraries.gitHubUsersList
+package com.example.popularlibraries.gitHubUsersList.views
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
