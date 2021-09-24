@@ -21,11 +21,11 @@ interface IListPresenter<V : ItemView> {
 
 interface IUserListPresenter : IListPresenter<UserItemView>
 
-@StateStrategyType(AddToEndSingleStrategy::class)
+
 interface MainView : MvpView {
 }
 
-@SingleState
+@StateStrategyType(AddToEndSingleStrategy::class)
 interface UsersView : MvpView {
     fun init()
     fun updateList()
