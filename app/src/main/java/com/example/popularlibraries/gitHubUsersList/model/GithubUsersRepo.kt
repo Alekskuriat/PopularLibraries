@@ -8,17 +8,19 @@ class GithubUsersRepo {
      * getUserByID(id) возвращает пользователя соответствующего ID
      */
 
-    fun getUsers() : List<GithubUser> {
-        return listOf(
-            GithubUser("login_1"),
-            GithubUser("login_2"),
-            GithubUser("login_3"),
-            GithubUser("login_4"),
-            GithubUser("login_5")
-        )
+    private val users = listOf(
+        GithubUser("login_1"),
+        GithubUser("login_2"),
+        GithubUser("login_3"),
+        GithubUser("login_4"),
+        GithubUser("login_5")
+    )
+
+    fun getUsers(): List<GithubUser> {
+        return users
     }
 
-    fun getUserById(id : String) : GithubUser? = getUsers().firstOrNull {
+    fun getUserById(id: String): GithubUser? = getUsers().firstOrNull {
         it.login == id
     }
 
