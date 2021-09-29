@@ -19,8 +19,8 @@ class UsersRVAdapter(
 
     fun submit(users: List<GithubUserModel>) {
         val callback = UserDiff(
-            list,
-            users
+            oldList = list,
+            newList = users
         )
         val result = DiffUtil.calculateDiff(callback)
         list.clear()

@@ -1,15 +1,15 @@
 package com.example.popularlibraries.gitHubUsersList.user
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.FragmentUserBinding
+import com.example.popularlibraries.gitHubUsersList.App
 import com.example.popularlibraries.gitHubUsersList.BackButtonListener
-import com.example.popularlibraries.gitHubUsersList.users.GithubUsersRepo
+import com.example.popularlibraries.gitHubUsersList.users.GithubUsersRepoImpl
 import com.example.popularlibraries.viewBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -38,15 +38,25 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView, Bac
 
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
-            id,
-            GithubUsersRepo()
+            userId = id,
+            usersRepo = GithubUsersRepoImpl(),
+            router = App.instance.router
         )
     }
 
     override fun backPressed() = presenter.backPressed()
 
+    @SuppressLint("ResourceAsColor")
     override fun showNameUser(user: GithubUserModel) {
-        viewBinding.userName.text = user.login
+
+        viewBinding.apply {
+            userName.run {
+                text = user.login
+                textSize = 30f
+                setTextColor(R.color.teal_200)
+            }
+        }
+
     }
 
     override fun showError(throwable: Throwable) {

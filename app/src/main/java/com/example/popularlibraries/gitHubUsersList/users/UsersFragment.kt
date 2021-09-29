@@ -1,9 +1,7 @@
 package com.example.popularlibraries.gitHubUsersList.users
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.R
@@ -30,7 +28,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView, 
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
-            GithubUsersRepo(),
+            GithubUsersRepoImpl(),
             App.instance.router
         )
     }
@@ -39,14 +37,23 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView, 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding.rvUsers.layoutManager = LinearLayoutManager(context)
-        adapter = UsersRVAdapter(this)
-        viewBinding.rvUsers.adapter = adapter
+
+
+
+        viewBinding.also {
+            it.rvUsers.let {rv ->
+                rv.layoutManager = LinearLayoutManager(context)
+                adapter = UsersRVAdapter(this)
+                rv.adapter = adapter
+            }
+        }
+
     }
 
 
     override fun showUsers(list: List<GithubUserModel>) {
         adapter?.submit(list)
+            ?: Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show()
     }
 
     override fun showError(throwable: Throwable) {
