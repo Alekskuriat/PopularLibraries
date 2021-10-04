@@ -1,17 +1,12 @@
 package com.example.popularlibraries.gitHubUsersList.users
 
 
+import com.example.popularlibraries.gitHubUsersList.repositories.RepositoriesScreen
 import com.example.popularlibraries.gitHubUsersList.user.GithubUserModel
-import com.example.popularlibraries.gitHubUsersList.user.UserScreen
 import com.github.terrakok.cicerone.Router
-import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.core.SingleObserver
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.internal.observers.ConsumerSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.subjects.SingleSubject
 import moxy.MvpPresenter
 
 class UsersPresenter(
@@ -27,7 +22,8 @@ class UsersPresenter(
         disposable.add(
             usersRepo
                 .getUsers()
-                .observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(
                     viewState::showUsers,
                     viewState::showError
@@ -35,7 +31,7 @@ class UsersPresenter(
         )
     }
 
-    fun openUserInfo(user: GithubUserModel) = router.navigateTo(UserScreen().user(user.id))
+    fun openUserInfo(user: GithubUserModel) = router.navigateTo(RepositoriesScreen().repositories(user.url_repo))
 
     fun backPressed(): Boolean {
         router.exit()

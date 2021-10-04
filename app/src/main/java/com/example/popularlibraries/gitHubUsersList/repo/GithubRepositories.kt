@@ -1,4 +1,4 @@
-package com.example.popularlibraries.gitHubUsersList.user
+package com.example.popularlibraries.gitHubUsersList.repo
 
 data class GithubRepositories(
     val name : String,

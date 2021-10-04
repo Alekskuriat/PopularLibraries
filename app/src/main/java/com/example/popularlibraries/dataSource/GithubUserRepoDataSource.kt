@@ -1,6 +1,6 @@
 package com.example.popularlibraries.dataSource
 
-import com.example.popularlibraries.gitHubUsersList.user.GithubRepositories
+import com.example.popularlibraries.gitHubUsersList.repo.GithubRepositories
 import io.reactivex.rxjava3.core.Single
 
 interface GithubUserRepoDataSource {

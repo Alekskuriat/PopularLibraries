@@ -28,7 +28,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView, 
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
-            GithubUsersRepoImpl(),
+            GithubUserRepoFactory.create(),
             App.instance.router
         )
     }
