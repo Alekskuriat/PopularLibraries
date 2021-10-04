@@ -3,16 +3,19 @@ package com.example.popularlibraries.gitHubUsersList.users
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.popularlibraries.gitHubUsersList.user.GithubUserModel
 import androidx.recyclerview.widget.DiffUtil
 import com.example.popularlibraries.R
 import com.example.popularlibraries.gitHubUsersList.user.UserClickListener
+import com.example.popularlibraries.glide.ImageLoader
 
 
 class UsersRVAdapter(
-    private val delegate: UserClickListener
+    private val delegate: UserClickListener,
+    val imageLoader: ImageLoader<ImageView>
 ) : RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {
 
     private val list: MutableList<GithubUserModel> = mutableListOf()
@@ -44,6 +47,7 @@ class UsersRVAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setLogin(list[position])
+        holder.loadAvatar(list[position])
         holder.itemView.tag = list[position]
     }
 
@@ -52,11 +56,16 @@ class UsersRVAdapter(
         UserItemView {
 
         private var userLogin: TextView = itemView.findViewById(R.id.tv_login)
+        private var userAvatar: ImageView = itemView.findViewById(R.id.avatar)
 
         override var pos = -1
 
         override fun setLogin(user: GithubUserModel) {
             userLogin.text = user.login
+        }
+
+        override fun loadAvatar(user: GithubUserModel) {
+            imageLoader.loadInto(user.avatar_url, userAvatar)
         }
     }
 }

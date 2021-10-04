@@ -10,4 +10,6 @@ interface UsersView : MvpView {
     fun showUsers(list: List<GithubUserModel>)
 
     fun showError(throwable: Throwable)
+
+    fun showLoading()
 }

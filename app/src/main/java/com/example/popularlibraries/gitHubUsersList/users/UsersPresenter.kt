@@ -19,6 +19,8 @@ class UsersPresenter(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
+        viewState.showLoading()
+
         disposable.add(
             usersRepo
                 .getUsers()
@@ -31,7 +33,7 @@ class UsersPresenter(
         )
     }
 
-    fun openUserInfo(user: GithubUserModel) = router.navigateTo(RepositoriesScreen().repositories(user.url_repo))
+    fun openUserInfo(user: GithubUserModel) = router.navigateTo(RepositoriesScreen().repositories(user.repos_url))
 
     fun backPressed(): Boolean {
         router.exit()

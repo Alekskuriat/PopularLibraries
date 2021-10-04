@@ -1,5 +1,6 @@
 package com.example.popularlibraries.gitHubUsersList.repositories
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -39,6 +40,14 @@ class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories
             url,
             App.instance.router
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        arguments?.let {
+            url = it.getString(KEY)
+        }
+
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

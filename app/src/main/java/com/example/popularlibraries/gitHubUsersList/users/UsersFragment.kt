@@ -10,6 +10,7 @@ import com.example.popularlibraries.gitHubUsersList.user.GithubUserModel
 import com.example.popularlibraries.gitHubUsersList.App
 import com.example.popularlibraries.gitHubUsersList.BackButtonListener
 import com.example.popularlibraries.gitHubUsersList.user.UserClickListener
+import com.example.popularlibraries.glide.GlideImageLoader
 import com.example.popularlibraries.viewBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -43,7 +44,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView, 
         viewBinding.also {
             it.rvUsers.let {rv ->
                 rv.layoutManager = LinearLayoutManager(context)
-                adapter = UsersRVAdapter(this)
+                adapter = UsersRVAdapter(this, GlideImageLoader())
                 rv.adapter = adapter
             }
         }
@@ -52,12 +53,18 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView, 
 
 
     override fun showUsers(list: List<GithubUserModel>) {
+        viewBinding.progress.visibility = View.GONE
         adapter?.submit(list)
             ?: Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show()
     }
 
     override fun showError(throwable: Throwable) {
         Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show()
+    }
+
+    override fun showLoading() {
+        viewBinding.progress.visibility = View.VISIBLE
+
     }
 
     override fun onClickUser(user: GithubUserModel) {
