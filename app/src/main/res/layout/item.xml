@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:foreground="?attr/selectableItemBackground"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:layout_margin="5dp">
 
     <ImageView
         android:id="@+id/avatar"

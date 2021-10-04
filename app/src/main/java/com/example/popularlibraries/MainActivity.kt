@@ -1,9 +1,10 @@
 package com.example.popularlibraries
 
 import android.os.Bundle
+import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.ActivityMainHw2Binding
-import com.example.popularlibraries.gitHubUsersList.App
-import com.example.popularlibraries.gitHubUsersList.users.UsersScreen
+import com.example.popularlibraries.domain.App
+import com.example.popularlibraries.presenter.users.UsersScreen
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 
