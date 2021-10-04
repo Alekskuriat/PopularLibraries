@@ -19,6 +19,8 @@ class RepositoriesPresenter(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
+        viewState.showLoading()
+
         if (url == null) viewState.showError(Exception("Url null"))
 
         url.let {

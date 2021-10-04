@@ -10,4 +10,6 @@ interface RepositoriesView : MvpView {
     fun showRepositories(list: List<GithubRepositories>)
 
     fun showError(throwable: Throwable)
+
+    fun showLoading()
 }

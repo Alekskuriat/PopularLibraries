@@ -72,11 +72,16 @@ class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories
     }
 
     override fun showRepositories(list: List<GithubRepositories>) {
+        viewBinding.progress.visibility = View.GONE
         adapter?.submit(list)
     }
 
     override fun showError(throwable: Throwable) {
         Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show()
+    }
+
+    override fun showLoading() {
+        viewBinding.progress.visibility = View.VISIBLE
     }
 
 
