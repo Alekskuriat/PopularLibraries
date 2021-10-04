@@ -1,7 +1,9 @@
 package com.example.popularlibraries.presenter.repositories
 
 import com.example.popularlibraries.domain.repositories.GithubRepoRepositories
+import com.example.popularlibraries.domain.repositories.GithubRepositories
 import com.example.popularlibraries.view.repositories.RepositoriesView
+import com.example.popularlibraries.view.repository.RepositoryScreen
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -38,6 +40,9 @@ class RepositoriesPresenter(
 
 
     }
+
+    fun repositoryInfo(githubRepositories: GithubRepositories) =
+        router.navigateTo(RepositoryScreen().repositoryInfoForks(githubRepositories.forks))
 
 
     fun backPressed(): Boolean {

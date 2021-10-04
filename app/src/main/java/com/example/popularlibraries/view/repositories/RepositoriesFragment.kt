@@ -56,7 +56,7 @@ class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories
         super.onViewCreated(view, savedInstanceState)
 
         viewBinding.also {
-            it.repositories.let {rv ->
+            it.repositories.let { rv ->
                 rv.layoutManager = LinearLayoutManager(context)
                 adapter = RepositoriesAdapter(this)
                 rv.adapter = adapter
@@ -67,8 +67,8 @@ class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories
     override fun backPressed(): Boolean = presenter.backPressed()
 
 
-    override fun onClickRepo(repo: GithubRepositories) {
-
+    override fun onClickRepo(githubRepositories: GithubRepositories) {
+        presenter.repositoryInfo(githubRepositories)
     }
 
     override fun showRepositories(list: List<GithubRepositories>) {

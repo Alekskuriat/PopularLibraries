@@ -14,7 +14,7 @@ class RepositoriesAdapter(
 ) : RecyclerView.Adapter<RepositoriesAdapter.ViewHolder>() {
 
     interface RepoClickListener {
-        fun onClickRepo(repo: GithubRepositories)
+        fun onClickRepo(githubRepositories: GithubRepositories)
     }
 
     private val list: MutableList<GithubRepositories> = mutableListOf()
