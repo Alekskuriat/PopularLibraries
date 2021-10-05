@@ -1,12 +1,13 @@
 package com.example.popularlibraries.domain.user
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.google.gson.annotations.SerializedName
 
 
 data class GithubUserModel(
-    val id : Int,
-    val login : String,
-    val repos_url: String,
-    val avatar_url : String
-)
+    @SerializedName("id")  val id : Int,
+    @SerializedName("login") val login : String,
+    @SerializedName("repos_url") val reposUrl: String,
+    @SerializedName("avatar_url") val avatarUrl : String
+
+    )

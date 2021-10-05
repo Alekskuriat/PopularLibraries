@@ -1,6 +1,9 @@
 package com.example.popularlibraries.domain.repositories
 
+import com.google.gson.annotations.SerializedName
+
+
 data class GithubRepositories(
-    val name : String,
-    val forks : Int
+    @SerializedName("name") val name : String,
+    @SerializedName("forks") val forks : Int
 )
