@@ -23,9 +23,7 @@ class RepositoriesPresenter(
 
         viewState.showLoading()
 
-        if (url == null) viewState.showError(Exception("Url null"))
-
-        url.let {
+        url?.let {
             disposable.add(
                 gitHubReposRepository
                     .getRepositories(it!!)
@@ -36,7 +34,7 @@ class RepositoriesPresenter(
                         viewState::showError
                     )
             )
-        }
+        } ?: viewState.showError(Exception("Url null"))
 
 
     }

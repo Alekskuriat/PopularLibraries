@@ -64,7 +64,7 @@ class UsersRVAdapter(
         }
 
         override fun loadAvatar(user: GithubUserModel) {
-            imageLoader.loadInto(user.avatar_url, userAvatar)
+            imageLoader.loadInto(user.avatarUrl, userAvatar)
         }
     }
 }

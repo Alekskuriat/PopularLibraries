@@ -14,11 +14,9 @@ class RepositoryPresenter(
 
         viewState.showLoading()
 
-        if (forks == null) viewState.showError(Exception("Forks null"))
-
         forks?.let {
             viewState.showRepositoryInfo(it)
-        }
+        } ?: viewState.showError(Exception("Forks null"))
 
 
     }
