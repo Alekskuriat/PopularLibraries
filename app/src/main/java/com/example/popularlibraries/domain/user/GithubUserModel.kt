@@ -11,13 +11,13 @@ data class GithubUserModel(
     @PrimaryKey
     val id : Int,
     @SerializedName("login")
-    @ColumnInfo
+    @ColumnInfo(name = "login")
     val login : String,
     @SerializedName("repos_url")
-    @ColumnInfo
+    @ColumnInfo(name = "repos_url")
     val reposUrl: String,
     @SerializedName("avatar_url")
-    @ColumnInfo
+    @ColumnInfo(name = "avatar_url")
     val avatarUrl : String
 
     )

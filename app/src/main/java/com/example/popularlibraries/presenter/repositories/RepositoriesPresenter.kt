@@ -26,7 +26,7 @@ class RepositoriesPresenter(
         url?.let {
             disposable.add(
                 gitHubReposRepository
-                    .getRepositories(it!!)
+                    .getRepositories(it)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(
