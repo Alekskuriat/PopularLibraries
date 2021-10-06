@@ -12,7 +12,6 @@ import moxy.MvpPresenter
 
 class RepositoriesPresenter(
     private val gitHubReposRepository: GithubRepoRepositories,
-    private val url: String?,
     private val router: Router
 ) : MvpPresenter<RepositoriesView>() {
 
@@ -23,10 +22,9 @@ class RepositoriesPresenter(
 
         viewState.showLoading()
 
-        url?.let {
             disposable.add(
                 gitHubReposRepository
-                    .getRepositories(it)
+                    .getRepositories()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(
@@ -34,10 +32,8 @@ class RepositoriesPresenter(
                         viewState::showError
                     )
             )
-        } ?: viewState.showError(Exception("Url null"))
+        }
 
-
-    }
 
     fun repositoryInfo(githubRepositories: GithubRepositories) =
         router.navigateTo(RepositoryScreen().repositoryInfoForks(githubRepositories.forks))

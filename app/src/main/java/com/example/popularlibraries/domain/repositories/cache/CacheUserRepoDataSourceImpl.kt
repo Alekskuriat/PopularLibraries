@@ -10,18 +10,18 @@ class CacheUserRepoDataSourceImpl(
 
 
     override fun retain(
-        repositories: List<GithubRepositories>,
-        url: String
+        repositories: List<GithubRepositories>
     ): Single<List<GithubRepositories>> =
         githubStorage
             .getGithubUserRepoDao()
             .retain(repositories)
-            .andThen(getRepositories(url))
+            .andThen(getRepositories())
 
 
-    override fun getRepositories(uri: String): Single<List<GithubRepositories>> =
+    override fun getRepositories(): Single<List<GithubRepositories>> =
         githubStorage
             .getGithubUserRepoDao()
             .getRepositories()
+
 
 }

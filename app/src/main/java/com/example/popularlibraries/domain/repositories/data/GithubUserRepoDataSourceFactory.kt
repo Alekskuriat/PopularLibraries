@@ -4,6 +4,6 @@ import com.example.popularlibraries.domain.api.GithubApiFactory
 
 object GithubUserRepoDataSourceFactory {
 
-    fun create(): GithubUserRepoDataSource = GithubUserRepoDataSourceImpl(GithubApiFactory.create())
+    fun create(url : String): GithubUserRepoDataSource = GithubUserRepoDataSourceImpl(GithubApiFactory.create(), url)
 
 }

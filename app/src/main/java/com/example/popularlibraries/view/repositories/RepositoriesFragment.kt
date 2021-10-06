@@ -38,8 +38,7 @@ class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories
 
     private val presenter: RepositoriesPresenter by moxyPresenter {
         RepositoriesPresenter(
-            GithubRepoRepositoriesFactory.create(),
-            url,
+            GithubRepoRepositoriesFactory.create(requireContext(), url!!),
             App.instance.router
         )
     }
