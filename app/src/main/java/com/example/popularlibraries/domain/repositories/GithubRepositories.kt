@@ -7,14 +7,7 @@ import androidx.room.PrimaryKey
 import com.example.popularlibraries.domain.user.GithubUserModel
 import com.google.gson.annotations.SerializedName
 
-@Entity(
-    foreignKeys = [ForeignKey(
-        entity = GithubUserModel::class,
-        parentColumns = ["id"],
-        childColumns = ["userId"],
-        onDelete = ForeignKey.CASCADE
-    )], tableName = "repositories"
-)
+@Entity(tableName = "repositories")
 
 data class GithubRepositories(
     @PrimaryKey

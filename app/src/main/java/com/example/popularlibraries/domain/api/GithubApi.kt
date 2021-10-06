@@ -4,6 +4,7 @@ import com.example.popularlibraries.domain.repositories.GithubRepositories
 import com.example.popularlibraries.domain.user.GithubUserModel
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Url
 
 interface GithubApi {
@@ -14,5 +15,7 @@ interface GithubApi {
     @GET
     fun getRepositories(@Url url: String): Single<List<GithubRepositories>>
 
+    @GET("/users/{username}")
+    fun getUserByLogin(@Path("username") login: Int): Single<GithubUserModel>
 
 }
