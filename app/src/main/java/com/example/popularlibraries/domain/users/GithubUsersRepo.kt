@@ -9,6 +9,6 @@ interface GithubUsersRepo {
 
     fun getUsers(): Observable<List<GithubUserModel>>
 
-    //fun getUserByLogin(userId : Int) : Maybe<GithubUserModel>
+
 
 }

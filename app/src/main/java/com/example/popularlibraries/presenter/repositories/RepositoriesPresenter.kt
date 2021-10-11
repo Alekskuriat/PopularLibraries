@@ -6,13 +6,16 @@ import com.example.popularlibraries.view.repositories.RepositoriesView
 import com.example.popularlibraries.view.repository.RepositoryScreen
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
 class RepositoriesPresenter(
     private val gitHubReposRepository: GithubRepoRepositories,
-    private val router: Router
+    private val url : String,
+    private val router: Router,
+    private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers
 ) : MvpPresenter<RepositoriesView>() {
 
     private val disposable = CompositeDisposable()
@@ -24,9 +27,9 @@ class RepositoriesPresenter(
 
             disposable.add(
                 gitHubReposRepository
-                    .getRepositories()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
+                    .getRepositories(url)
+                    .observeOn(schedulers.main())
+                    .subscribeOn(schedulers.background())
                     .subscribe(
                         viewState::showRepositories,
                         viewState::showError

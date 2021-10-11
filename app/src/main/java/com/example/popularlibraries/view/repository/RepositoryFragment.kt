@@ -9,12 +9,16 @@ import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.FragmentRepositoriesBinding
 import com.example.popularlibraries.databinding.FragmentRepositoryBinding
 import com.example.popularlibraries.domain.App
+import com.example.popularlibraries.domain.abs.AbsFragment
 import com.example.popularlibraries.presenter.repository.RepositoryPresenter
 import com.example.popularlibraries.view.viewBinding
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.Router
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
-class RepositoryFragment : MvpAppCompatFragment(R.layout.fragment_repository), RepositoryView {
+class RepositoryFragment : AbsFragment(R.layout.fragment_repository), RepositoryView {
 
     private var forks: Int? = null
 
@@ -40,7 +44,7 @@ class RepositoryFragment : MvpAppCompatFragment(R.layout.fragment_repository), R
     private val presenter: RepositoryPresenter by moxyPresenter {
         RepositoryPresenter(
             forks,
-            App.instance.router
+            router
         )
     }
 

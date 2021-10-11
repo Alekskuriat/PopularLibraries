@@ -7,8 +7,10 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import java.security.PrivateKey
+import javax.inject.Inject
 
-class GithubUsersRepoImpl(
+class GithubUsersRepoImpl
+    @Inject constructor(
     private val githubUserDataSource: GithubUserDataSource,
     private val cache : CacheUserDataSource
 ) : GithubUsersRepo {

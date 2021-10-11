@@ -7,26 +7,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.FragmentUsersBinding
 import com.example.popularlibraries.domain.user.GithubUserModel
-import com.example.popularlibraries.domain.users.GithubUserRepoFactory
-import com.example.popularlibraries.domain.App
+import com.example.popularlibraries.domain.abs.AbsFragment
 import com.example.popularlibraries.view.BackButtonListener
 import com.example.popularlibraries.presenter.users.recycler.UserClickListener
 import com.example.popularlibraries.domain.glide.GlideImageLoader
+import com.example.popularlibraries.domain.users.GithubUsersRepo
 import com.example.popularlibraries.presenter.users.UsersPresenter
 import com.example.popularlibraries.presenter.users.recycler.UsersRVAdapter
 import com.example.popularlibraries.view.viewBinding
 
 
-import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
-class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView, BackButtonListener,
+class UsersFragment : AbsFragment(R.layout.fragment_users), UsersView, BackButtonListener,
     UserClickListener {
-
 
     companion object {
         fun newInstance() = UsersFragment()
     }
+
+    @Inject
+    lateinit var githubUserRepo: GithubUsersRepo
 
     private val viewBinding: FragmentUsersBinding by viewBinding(
         FragmentUsersBinding::bind
@@ -34,8 +36,9 @@ class UsersFragment : MvpAppCompatFragment(R.layout.fragment_users), UsersView, 
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
-            GithubUserRepoFactory.create(requireContext()),
-            App.instance.router
+            githubUserRepo,
+            router,
+            schedulers
         )
     }
 

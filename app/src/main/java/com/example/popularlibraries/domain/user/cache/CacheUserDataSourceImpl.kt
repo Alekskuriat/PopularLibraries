@@ -5,8 +5,10 @@ import com.example.popularlibraries.domain.user.GithubUserModel
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class CacheUserDataSourceImpl(
+class CacheUserDataSourceImpl
+    @Inject constructor(
     private val githubStorage: GithubStorage
 ) : CacheUserDataSource {
 

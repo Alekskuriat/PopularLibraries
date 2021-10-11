@@ -13,7 +13,8 @@ import moxy.MvpPresenter
 
 class UsersPresenter(
     private val usersRepo: GithubUsersRepo,
-    private val router: Router
+    private val router: Router,
+    private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers
 ) : MvpPresenter<UsersView>() {
 
     private val disposable = CompositeDisposable()
@@ -26,8 +27,8 @@ class UsersPresenter(
         disposable.add(
             usersRepo
                 .getUsers()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .observeOn(schedulers.main())
+                .subscribeOn(schedulers.background())
                 .subscribe(
                     viewState::showUsers,
                     viewState::showError

@@ -5,18 +5,22 @@ import com.example.popularlibraries.domain.repositories.cache.CacheUserRepoDataS
 import com.example.popularlibraries.domain.repositories.data.GithubUserRepoDataSource
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GithubRepoRepositoriesImpl(
+class GithubRepoRepositoriesImpl
+@Inject constructor(
     private val gitHubReposDataSource: GithubUserRepoDataSource,
-    private val cache : CacheUserRepoDataSource
+    private val cache: CacheUserRepoDataSource
 ) : GithubRepoRepositories {
 
-    override fun getRepositories(): Observable<List<GithubRepositories>> =
+    override fun getRepositories(url: String): Observable<List<GithubRepositories>> =
         Observable.merge(
-            cache.getRepositories().toObservable(),
-            gitHubReposDataSource.getRepositories().flatMap (cache::retain).toObservable()
+            cache.getRepositories(url).toObservable(),
+            gitHubReposDataSource.getRepositories(url).flatMap {
+                cache.retain(it, url)
+            }.toObservable()
         )
-
-
-
 }
+
+
+

@@ -8,22 +8,25 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.FragmentRepositoriesBinding
-import com.example.popularlibraries.domain.App
+import com.example.popularlibraries.domain.abs.AbsFragment
+import com.example.popularlibraries.domain.repositories.GithubRepoRepositories
 import com.example.popularlibraries.view.BackButtonListener
-import com.example.popularlibraries.domain.repositories.GithubRepoRepositoriesFactory
 import com.example.popularlibraries.domain.repositories.GithubRepositories
 import com.example.popularlibraries.presenter.repositories.recycler.RepositoriesAdapter
 import com.example.popularlibraries.presenter.repositories.RepositoriesPresenter
 import com.example.popularlibraries.view.viewBinding
 
-import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
-class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories), RepositoriesView,
+class RepositoriesFragment : AbsFragment(R.layout.fragment_repositories), RepositoriesView,
     BackButtonListener, RepositoriesAdapter.RepoClickListener {
 
-    private var url: String? = null
+    private var url: String = ""
     var adapter: RepositoriesAdapter? = null
+
+    @Inject
+    lateinit var githubRepoRepositories: GithubRepoRepositories
 
     companion object {
         private const val KEY = "repo"
@@ -38,14 +41,16 @@ class RepositoriesFragment : MvpAppCompatFragment(R.layout.fragment_repositories
 
     private val presenter: RepositoriesPresenter by moxyPresenter {
         RepositoriesPresenter(
-            GithubRepoRepositoriesFactory.create(requireContext(), url!!),
-            App.instance.router
+            githubRepoRepositories,
+            url,
+            router,
+            schedulers
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         arguments?.let {
-            url = it.getString(KEY)
+            url = it.getString(KEY).toString()
         }
 
         super.onCreate(savedInstanceState)

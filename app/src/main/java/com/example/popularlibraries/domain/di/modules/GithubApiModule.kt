@@ -1,14 +1,21 @@
-package com.example.popularlibraries.domain.api
+package com.example.popularlibraries.domain.di.modules
 
+import com.example.popularlibraries.domain.api.GithubApi
+import dagger.Module
+import dagger.Provides
+import dagger.Reusable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-object GithubApiFactory {
+@Module
+class GithubApiModule {
 
-    fun create() : GithubApi =
+    @Reusable
+    @Provides
+    fun provideGitHubApi(): GithubApi =
         Retrofit.Builder()
             .baseUrl("https://api.github.com")
             .client(
