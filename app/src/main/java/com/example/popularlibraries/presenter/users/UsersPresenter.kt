@@ -6,12 +6,15 @@ import com.example.popularlibraries.domain.user.GithubUserModel
 import com.example.popularlibraries.domain.users.GithubUsersRepo
 import com.example.popularlibraries.view.users.UsersView
 import com.github.terrakok.cicerone.Router
+import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UsersPresenter(
+class UsersPresenter
+    @Inject constructor( //Работает с @Inject
     private val usersRepo: GithubUsersRepo,
     private val router: Router,
     private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers

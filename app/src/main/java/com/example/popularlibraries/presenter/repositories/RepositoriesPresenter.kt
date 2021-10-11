@@ -5,17 +5,20 @@ import com.example.popularlibraries.domain.repositories.GithubRepositories
 import com.example.popularlibraries.view.repositories.RepositoriesView
 import com.example.popularlibraries.view.repository.RepositoryScreen
 import com.github.terrakok.cicerone.Router
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
-class RepositoriesPresenter(
-    private val gitHubReposRepository: GithubRepoRepositories,
-    private val url : String,
-    private val router: Router,
-    private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers
+class RepositoriesPresenter
+    @AssistedInject constructor(
+        private val gitHubReposRepository: GithubRepoRepositories,
+        @Assisted private val url : String,
+        private val router: Router,
+        private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers
 ) : MvpPresenter<RepositoriesView>() {
 
     private val disposable = CompositeDisposable()

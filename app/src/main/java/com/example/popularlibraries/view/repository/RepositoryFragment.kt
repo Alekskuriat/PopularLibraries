@@ -11,6 +11,7 @@ import com.example.popularlibraries.databinding.FragmentRepositoryBinding
 import com.example.popularlibraries.domain.App
 import com.example.popularlibraries.domain.abs.AbsFragment
 import com.example.popularlibraries.presenter.repository.RepositoryPresenter
+import com.example.popularlibraries.presenter.repository.RepositoryPresenterFactory
 import com.example.popularlibraries.view.viewBinding
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -21,6 +22,9 @@ import javax.inject.Inject
 class RepositoryFragment : AbsFragment(R.layout.fragment_repository), RepositoryView {
 
     private var forks: Int? = null
+
+    @Inject
+    lateinit var repositoryPresenterFactory: RepositoryPresenterFactory
 
     companion object {
         private const val KEY = "forks"
@@ -41,11 +45,9 @@ class RepositoryFragment : AbsFragment(R.layout.fragment_repository), Repository
         FragmentRepositoryBinding::bind
     )
 
+
     private val presenter: RepositoryPresenter by moxyPresenter {
-        RepositoryPresenter(
-            forks,
-            router
-        )
+        repositoryPresenterFactory.create(forks)
     }
 
     override fun showRepositoryInfo(forks: Int) {

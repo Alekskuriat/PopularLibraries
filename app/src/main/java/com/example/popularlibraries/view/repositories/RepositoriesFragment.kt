@@ -14,6 +14,7 @@ import com.example.popularlibraries.view.BackButtonListener
 import com.example.popularlibraries.domain.repositories.GithubRepositories
 import com.example.popularlibraries.presenter.repositories.recycler.RepositoriesAdapter
 import com.example.popularlibraries.presenter.repositories.RepositoriesPresenter
+import com.example.popularlibraries.presenter.repositories.RepositoriesPresenterFactory
 import com.example.popularlibraries.view.viewBinding
 
 import moxy.ktx.moxyPresenter
@@ -26,7 +27,7 @@ class RepositoriesFragment : AbsFragment(R.layout.fragment_repositories), Reposi
     var adapter: RepositoriesAdapter? = null
 
     @Inject
-    lateinit var githubRepoRepositories: GithubRepoRepositories
+    lateinit var repositoriesPresenterFactory: RepositoriesPresenterFactory
 
     companion object {
         private const val KEY = "repo"
@@ -40,12 +41,7 @@ class RepositoriesFragment : AbsFragment(R.layout.fragment_repositories), Reposi
     )
 
     private val presenter: RepositoriesPresenter by moxyPresenter {
-        RepositoriesPresenter(
-            githubRepoRepositories,
-            url,
-            router,
-            schedulers
-        )
+        repositoriesPresenterFactory.create(url)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
