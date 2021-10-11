@@ -15,10 +15,13 @@ class GithubRepoRepositoriesImpl
 
     override fun getRepositories(url: String): Observable<List<GithubRepositories>> =
         Observable.merge(
-            cache.getRepositories(url).toObservable(),
-            gitHubReposDataSource.getRepositories(url).flatMap {
-                cache.retain(it, url)
-            }.toObservable()
+            cache
+                .getRepositories(url)
+                .toObservable(),
+            gitHubReposDataSource
+                .getRepositories(url)
+                .flatMap { cache.retain(it, url) }
+                .toObservable()
         )
 }
 

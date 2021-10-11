@@ -5,5 +5,5 @@ import dagger.assisted.AssistedFactory
 @AssistedFactory
 interface RepositoryPresenterFactory {
 
-    fun create(forks : Int?) : RepositoryPresenter
+    fun create(forks: Int): RepositoryPresenter
 }

@@ -14,11 +14,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
 class RepositoriesPresenter
-    @AssistedInject constructor(
-        private val gitHubReposRepository: GithubRepoRepositories,
-        @Assisted private val url : String,
-        private val router: Router,
-        private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers
+@AssistedInject constructor(
+    private val gitHubReposRepository: GithubRepoRepositories,
+    @Assisted private val url: String,
+    private val router: Router,
+    private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers
 ) : MvpPresenter<RepositoriesView>() {
 
     private val disposable = CompositeDisposable()
@@ -28,17 +28,17 @@ class RepositoriesPresenter
 
         viewState.showLoading()
 
-            disposable.add(
-                gitHubReposRepository
-                    .getRepositories(url)
-                    .observeOn(schedulers.main())
-                    .subscribeOn(schedulers.background())
-                    .subscribe(
-                        viewState::showRepositories,
-                        viewState::showError
-                    )
-            )
-        }
+        disposable.add(
+            gitHubReposRepository
+                .getRepositories(url)
+                .observeOn(schedulers.main())
+                .subscribeOn(schedulers.background())
+                .subscribe(
+                    viewState::showRepositories,
+                    viewState::showError
+                )
+        )
+    }
 
 
     fun repositoryInfo(githubRepositories: GithubRepositories) =

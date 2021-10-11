@@ -5,14 +5,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.popularlibraries.R
-import com.example.popularlibraries.databinding.FragmentRepositoriesBinding
 import com.example.popularlibraries.databinding.FragmentRepositoryBinding
 import com.example.popularlibraries.domain.App
 import com.example.popularlibraries.domain.abs.AbsFragment
 import com.example.popularlibraries.presenter.repository.RepositoryPresenter
 import com.example.popularlibraries.presenter.repository.RepositoryPresenterFactory
-import com.example.popularlibraries.view.viewBinding
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import moxy.MvpAppCompatFragment
@@ -21,7 +20,7 @@ import javax.inject.Inject
 
 class RepositoryFragment : AbsFragment(R.layout.fragment_repository), RepositoryView {
 
-    private var forks: Int? = null
+    private var forks: Int = 0
 
     @Inject
     lateinit var repositoryPresenterFactory: RepositoryPresenterFactory

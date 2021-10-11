@@ -7,6 +7,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.popularlibraries.R
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.popularlibraries.databinding.FragmentRepositoriesBinding
 import com.example.popularlibraries.domain.abs.AbsFragment
 import com.example.popularlibraries.domain.repositories.GithubRepoRepositories
@@ -15,7 +16,6 @@ import com.example.popularlibraries.domain.repositories.GithubRepositories
 import com.example.popularlibraries.presenter.repositories.recycler.RepositoriesAdapter
 import com.example.popularlibraries.presenter.repositories.RepositoriesPresenter
 import com.example.popularlibraries.presenter.repositories.RepositoriesPresenterFactory
-import com.example.popularlibraries.view.viewBinding
 
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
@@ -36,9 +36,8 @@ class RepositoriesFragment : AbsFragment(R.layout.fragment_repositories), Reposi
                 .arguments(KEY to url)
     }
 
-    private val viewBinding: FragmentRepositoriesBinding by viewBinding(
-        FragmentRepositoriesBinding::bind
-    )
+    private val viewBinding: FragmentRepositoriesBinding by viewBinding( )
+
 
     private val presenter: RepositoriesPresenter by moxyPresenter {
         repositoriesPresenterFactory.create(url)

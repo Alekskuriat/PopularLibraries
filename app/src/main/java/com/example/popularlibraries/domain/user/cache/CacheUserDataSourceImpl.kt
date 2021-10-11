@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class CacheUserDataSourceImpl
-    @Inject constructor(
+@Inject constructor(
     private val githubStorage: GithubStorage
 ) : CacheUserDataSource {
 
@@ -22,8 +22,6 @@ class CacheUserDataSourceImpl
         githubStorage
             .getGithubUserDao()
             .getGithubUsers()
-
-
 
 
 }

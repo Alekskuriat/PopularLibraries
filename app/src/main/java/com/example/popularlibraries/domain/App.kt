@@ -12,17 +12,17 @@ class App : DaggerApplication() {
 
 
     override fun applicationInjector(): AndroidInjector<App> =
-    DaggerApplicationComponent
-        .builder()
-        .withContext(applicationContext)
-        .apply {
-            val cicerone = Cicerone.create()
+        DaggerApplicationComponent
+            .builder()
+            .withContext(applicationContext)
+            .apply {
+                val cicerone = Cicerone.create()
 
-            withNavigatorHolder(cicerone.getNavigatorHolder())
-            withRouter(cicerone.router)
-            withSchedulers(DefaultSchedulers())
-        }
-        .build()
+                withNavigatorHolder(cicerone.getNavigatorHolder())
+                withRouter(cicerone.router)
+                withSchedulers(DefaultSchedulers())
+            }
+            .build()
 
 
 }

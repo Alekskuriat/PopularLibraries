@@ -39,7 +39,10 @@ class UsersPresenter
         )
     }
 
-    fun openUserInfo(user: GithubUserModel) = router.navigateTo(RepositoriesScreen().repositories(user.reposUrl))
+    fun openUserInfo(user: GithubUserModel) =
+        router
+            .navigateTo(RepositoriesScreen()
+                .repositories(user.reposUrl))
 
     fun backPressed(): Boolean {
         router.exit()

@@ -5,5 +5,5 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 class RepositoryScreen {
 
-    fun repositoryInfoForks(forks : Int) = FragmentScreen { RepositoryFragment.newInstance(forks)}
+    fun repositoryInfoForks(forks: Int) = FragmentScreen { RepositoryFragment.newInstance(forks) }
 }

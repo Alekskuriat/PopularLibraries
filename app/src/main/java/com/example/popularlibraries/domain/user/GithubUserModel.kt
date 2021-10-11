@@ -9,15 +9,15 @@ import com.google.gson.annotations.SerializedName
 data class GithubUserModel(
     @SerializedName("id")
     @PrimaryKey
-    val id : Int,
+    val id: Int,
     @SerializedName("login")
     @ColumnInfo(name = "login")
-    val login : String,
+    val login: String,
     @SerializedName("repos_url")
     @ColumnInfo(name = "repos_url")
     val reposUrl: String,
     @SerializedName("avatar_url")
     @ColumnInfo(name = "avatar_url")
-    val avatarUrl : String
+    val avatarUrl: String
 
-    )
+)

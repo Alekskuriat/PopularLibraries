@@ -9,8 +9,8 @@ import moxy.MvpPresenter
 
 class RepositoryPresenter
     @AssistedInject constructor(
-        @Assisted private val forks: Int?,
-        private val router: Router
+    @Assisted private val forks: Int,
+    private val router: Router
 ) : MvpPresenter<RepositoryView>() {
 
     override fun onFirstViewAttach() {
@@ -18,10 +18,9 @@ class RepositoryPresenter
 
         viewState.showLoading()
 
-        forks?.let {
+        forks.let {
             viewState.showRepositoryInfo(it)
-        } ?: viewState.showError(Exception("Forks null"))
-
+        }
 
     }
 

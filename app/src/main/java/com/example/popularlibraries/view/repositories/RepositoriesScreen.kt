@@ -5,7 +5,7 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 class RepositoriesScreen {
 
-    fun repositories(url : String) = FragmentScreen { RepositoriesFragment.newInstance(url)}
+    fun repositories(url: String) = FragmentScreen { RepositoriesFragment.newInstance(url) }
 
 
 }

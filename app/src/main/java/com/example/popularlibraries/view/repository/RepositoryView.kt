@@ -7,7 +7,7 @@ import moxy.viewstate.strategy.alias.SingleState
 @SingleState
 interface RepositoryView : MvpView {
 
-    fun showRepositoryInfo(forks : Int)
+    fun showRepositoryInfo(forks: Int)
 
     fun showError(throwable: Throwable)
 

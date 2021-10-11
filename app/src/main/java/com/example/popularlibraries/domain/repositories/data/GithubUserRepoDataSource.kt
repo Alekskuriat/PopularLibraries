@@ -5,5 +5,5 @@ import io.reactivex.rxjava3.core.Single
 
 interface GithubUserRepoDataSource {
 
-    fun getRepositories (url: String) : Single<List<GithubRepositories>>
+    fun getRepositories(url: String): Single<List<GithubRepositories>>
 }

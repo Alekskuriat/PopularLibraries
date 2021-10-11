@@ -5,6 +5,6 @@ import dagger.assisted.AssistedFactory
 @AssistedFactory
 interface RepositoriesPresenterFactory {
 
-    fun create(url : String) : RepositoriesPresenter
+    fun create(url: String): RepositoriesPresenter
 
 }

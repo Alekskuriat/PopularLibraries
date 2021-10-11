@@ -12,17 +12,20 @@ import javax.inject.Inject
 class GithubUsersRepoImpl
     @Inject constructor(
     private val githubUserDataSource: GithubUserDataSource,
-    private val cache : CacheUserDataSource
+    private val cache: CacheUserDataSource
 ) : GithubUsersRepo {
-
 
 
     override fun getUsers(): Observable<List<GithubUserModel>> =
         Observable.merge(
-            cache.getUsers().toObservable(),
-            githubUserDataSource.getUsers().flatMap (cache::retain).toObservable()
+            cache
+                .getUsers()
+                .toObservable(),
+            githubUserDataSource
+                .getUsers()
+                .flatMap(cache::retain)
+                .toObservable()
         )
-
 
 
 }

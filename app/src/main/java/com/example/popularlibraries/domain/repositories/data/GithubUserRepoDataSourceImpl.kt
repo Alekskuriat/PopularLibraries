@@ -6,11 +6,11 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class GithubUserRepoDataSourceImpl
-    @Inject constructor(
+@Inject constructor(
     private val githubApi: GithubApi
 ) : GithubUserRepoDataSource {
 
-    override fun getRepositories(url:String): Single<List<GithubRepositories>> {
+    override fun getRepositories(url: String): Single<List<GithubRepositories>> {
         return githubApi.getRepositories(url)
     }
 }

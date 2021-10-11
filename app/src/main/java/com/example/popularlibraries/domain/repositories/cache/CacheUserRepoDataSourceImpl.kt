@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class CacheUserRepoDataSourceImpl
-    @Inject constructor(
+@Inject constructor(
     private val githubStorage: GithubStorage
 ) : CacheUserRepoDataSource {
 
@@ -21,7 +21,7 @@ class CacheUserRepoDataSourceImpl
             .andThen(getRepositories(url))
 
 
-    override fun getRepositories(url:String): Single<List<GithubRepositories>> =
+    override fun getRepositories(url: String): Single<List<GithubRepositories>> =
         githubStorage
             .getGithubUserRepoDao()
             .getRepositories()

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.popularlibraries.R
 import com.example.popularlibraries.databinding.FragmentUsersBinding
 import com.example.popularlibraries.domain.user.GithubUserModel
@@ -14,7 +15,6 @@ import com.example.popularlibraries.domain.glide.GlideImageLoader
 import com.example.popularlibraries.domain.users.GithubUsersRepo
 import com.example.popularlibraries.presenter.users.UsersPresenter
 import com.example.popularlibraries.presenter.users.recycler.UsersRVAdapter
-import com.example.popularlibraries.view.viewBinding
 
 
 import moxy.ktx.moxyPresenter
@@ -30,9 +30,7 @@ class UsersFragment : AbsFragment(R.layout.fragment_users), UsersView, BackButto
     @Inject
     lateinit var githubUserRepo: GithubUsersRepo
 
-    private val viewBinding: FragmentUsersBinding by viewBinding(
-        FragmentUsersBinding::bind
-    )
+    private val viewBinding: FragmentUsersBinding by viewBinding()
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
@@ -50,7 +48,7 @@ class UsersFragment : AbsFragment(R.layout.fragment_users), UsersView, BackButto
 
 
         viewBinding.also {
-            it.rvUsers.let {rv ->
+            it.rvUsers.let { rv ->
                 rv.layoutManager = LinearLayoutManager(context)
                 adapter = UsersRVAdapter(this, GlideImageLoader())
                 rv.adapter = adapter

@@ -1,5 +1,3 @@
-package com.example.popularlibraries.view
-
 import android.os.Looper
 import android.view.View
 import androidx.fragment.app.Fragment
