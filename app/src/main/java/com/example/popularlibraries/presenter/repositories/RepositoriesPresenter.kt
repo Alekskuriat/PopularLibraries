@@ -40,6 +40,13 @@ class RepositoriesPresenter
         )
     }
 
+    fun getRepositories(url: String): String {
+        return if (url == "") "Error"
+        else {
+            gitHubReposRepository.getRepositories(url)
+            "Ok"
+        }
+    }
 
     fun repositoryInfo(githubRepositories: GithubRepositories) =
         router.navigateTo(RepositoryScreen().repositoryInfoForks(githubRepositories.forks))
