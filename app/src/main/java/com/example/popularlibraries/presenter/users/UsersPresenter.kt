@@ -14,7 +14,7 @@ import moxy.MvpPresenter
 import javax.inject.Inject
 
 class UsersPresenter
-    @Inject constructor( //Работает с @Inject
+    @Inject constructor(
     private val usersRepo: GithubUsersRepo,
     private val router: Router,
     private val schedulers: com.example.popularlibraries.domain.schedulers.Schedulers
@@ -37,6 +37,11 @@ class UsersPresenter
                     viewState::showError
                 )
         )
+    }
+
+    fun getUsersList() {
+        viewState.showLoading()
+        usersRepo.getUsers()
     }
 
     fun openUserInfo(user: GithubUserModel) =
