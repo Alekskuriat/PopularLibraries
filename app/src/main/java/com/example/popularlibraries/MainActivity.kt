@@ -1,53 +1,35 @@
 package com.example.popularlibraries
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.popularlibraries.MVP.MainView
-import com.example.popularlibraries.MVP.Model
-import com.example.popularlibraries.MVP.Presenter
-import com.example.popularlibraries.MVP.PresenterInterface
-import com.example.popularlibraries.databinding.ActivityMainBinding
+import com.example.popularlibraries.R
+import com.example.popularlibraries.databinding.ActivityMainHw2Binding
+import com.example.popularlibraries.domain.App
+import com.example.popularlibraries.domain.abs.AbsActivity
+import com.example.popularlibraries.presenter.users.UsersScreen
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.androidx.AppNavigator
+import moxy.MvpAppCompatActivity
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(R.layout.activity_main), MainView {
+class MainActivity : AbsActivity(R.layout.activity_main_hw_2) {
 
-    private var binding: ActivityMainBinding? = null
-
-    private val presenter: PresenterInterface = Presenter(this, Model())
+    private val navigator = AppNavigator(this, R.id.container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
-
-        binding?.apply {
-            btnCounter1.setOnClickListener {
-                presenter.oneCounterClick()
-            }
-            btnCounter2.setOnClickListener {
-                presenter.twoCounterClick()
-            }
-            btnCounter3.setOnClickListener {
-                presenter.threeCounterClick()
-            }
-        }
-
+        savedInstanceState ?: router.newRootScreen(UsersScreen().users())
     }
 
-
-    override fun showCounterOne(text: String) {
-        binding?.btnCounter1?.text = text
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        navigatorHolder.setNavigator(navigator)
     }
 
-    override fun showCounterTwo(text: String) {
-        binding?.btnCounter2?.text = text
-    }
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
 
-    override fun showCounterThree(text: String) {
-        binding?.btnCounter3?.text = text
     }
-
 
 }
-
-
